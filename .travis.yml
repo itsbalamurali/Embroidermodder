@@ -30,4 +30,13 @@ script:
     - brew link qt5 --force
     - cd project-files/qmake
     - qmake
-    - make
+    - make -j4
+    
+deploy:
+  provider: releases
+  api_key:
+    secure: "CZdfNaFirkC+9f6Gw0riiyd0FEHw4ozoAY+ahQoFvq26TYCC+Wucjj61NXjvqnrTKe25IwDwjqGHUEcpZ8LgFMro6TvctiYsWHgRloXy71c9wOLdnEbf8gaSZJRUr0Y0YlAb3z3ggu//WmOBqsrcNIgCLkBpbH7SoOF0/K2MnV/RehzczWEHIKJ0TVZRcFqO1oiUbEvyurdD76kCEZJMEJ8E7wwUVtBPhsZEspRT7ci5TNy2/J1k/H2fH6DU340PbrDQFoZBwrfWH4azNJRrvmIgteGZVkSdYisf6Xwaad6laR9dlsR31Vfyedi2m992zYzInOO+3uAn85+byu3O7nOf5WaXx8lJFeVJQMiMjluzSwF8dsiDvD92hy/9jsL52NMoA4z5ylBI8mshJPoYU+cPL+IhbBDrB7i9SW4ci9zdr6XybE4/VEQ3aqxbj2FvNlqArJcnTxVeAJy5fNw7Y3dsUrxspO1i2hMTTOHpebEj0gvlprtsIhAiMkVfs9WTOA4saRCp/HfxPgRB5apRfgTsyXCbpnMr1IfH5KFNu+ub0MozIdjCLeWDMJSE66pry0uMkK4dbLFitNL+38EqFy+UvvcJ92cEhIZEpu8731C97h5QKVzpetpfVK+utY5oGsnlXGNYTC1gcQcLeqnR4I8/7d+Gw5TDRyO70lywLKY="
+  file: "embroidermodder2.app"
+  skip_cleanup: true
+  on:
+    tags: true
