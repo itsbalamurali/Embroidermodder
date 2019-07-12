@@ -27,6 +27,7 @@ matrix:
 
 script:
     # Do only a basic build for pull requests, otherwise build for all platforms
+    - brew link qt5 --force
     - cd project-files/qmake
     - qmake
     - make
