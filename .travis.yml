@@ -1,42 +1,21 @@
-# Travis-CI can't handle fancy shell syntax or some types of one-liners, so keep it simple and don't trust their lint tool to catch many problems.
 language: c
 matrix:
   include:
-    - os: osx
-      osx_image: xcode10.2
-      addons:
-        homebrew:
-          packages:
-            - qt
-
-# compiler:
-#     - gcc
-
-# before_install:
-#     - export NIGHTLY_HASH=`git ls-remote git://github.com/Embroidermodder/Embroidermodder.git | grep refs/heads/master | cut -f 1`
-#     - sudo apt-get update -qq
-
-# install:
-#     - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && sudo apt-get install git || sudo apt-get install git qt4-qmake libqt4-opengl-dev kdelibs5-dev valgrind'
-#     - git config --global user.email \<\>
-#     - git config --global user.name "Embroidermodder-Travis"
-
-# before_script:
-#     - cat /etc/lsb-release
-#     - uname -a
-
+  - os: osx
+    osx_image: xcode10.2
+    addons:
+      homebrew:
+        packages:
+        - qt
 script:
-    # Do only a basic build for pull requests, otherwise build for all platforms
-    - brew link qt5 --force
-    - cd project-files/qmake
-    - qmake
-    - make -j4
-    
+- brew link qt5 --force
+- cd project-files/qmake
+- qmake
+- make -j4
 deploy:
   provider: releases
   api_key:
-    secure: "CZdfNaFirkC+9f6Gw0riiyd0FEHw4ozoAY+ahQoFvq26TYCC+Wucjj61NXjvqnrTKe25IwDwjqGHUEcpZ8LgFMro6TvctiYsWHgRloXy71c9wOLdnEbf8gaSZJRUr0Y0YlAb3z3ggu//WmOBqsrcNIgCLkBpbH7SoOF0/K2MnV/RehzczWEHIKJ0TVZRcFqO1oiUbEvyurdD76kCEZJMEJ8E7wwUVtBPhsZEspRT7ci5TNy2/J1k/H2fH6DU340PbrDQFoZBwrfWH4azNJRrvmIgteGZVkSdYisf6Xwaad6laR9dlsR31Vfyedi2m992zYzInOO+3uAn85+byu3O7nOf5WaXx8lJFeVJQMiMjluzSwF8dsiDvD92hy/9jsL52NMoA4z5ylBI8mshJPoYU+cPL+IhbBDrB7i9SW4ci9zdr6XybE4/VEQ3aqxbj2FvNlqArJcnTxVeAJy5fNw7Y3dsUrxspO1i2hMTTOHpebEj0gvlprtsIhAiMkVfs9WTOA4saRCp/HfxPgRB5apRfgTsyXCbpnMr1IfH5KFNu+ub0MozIdjCLeWDMJSE66pry0uMkK4dbLFitNL+38EqFy+UvvcJ92cEhIZEpu8731C97h5QKVzpetpfVK+utY5oGsnlXGNYTC1gcQcLeqnR4I8/7d+Gw5TDRyO70lywLKY="
-  file: "embroidermodder2.app"
-  skip_cleanup: true
-#   on:
-#     tags: true
+    secure: gBCdCIeICtS1A3zaET2rILd3yRNl6dXzLRCctbY8zKh3qNYIuzHqtMu9KqBv53XNbax/S31WMpjbIU1L+oo9JZItUdzkIUZu3cNRAmn73zTYiN0s3OMRCmpECk+woBwQa52L/Z+cNW9baTPZmM/1BfOsYty9nyHZPTMM+jGDEa5MolG9CW3wLCLO+MIr60uaYMoTpPAMz1XtH1830G18oGssPrtlrr0obfu0UCRvIFPrxl1g/6PJWCS33Yb3EzqtkHH13ux5exziUAKWpVRrECpFjvsBZna7p/Hetcyo6ZsCdL0xOrzRbKllRjt/wiNYMcePPzVF6tPqpzpLUMoXQXdzpgNqM5zBJuqmYrzGPKRY3CLgR6JoxXwCdEPvuFsjDeNGKidHCQiRfjpazAgvx+l//1K9UmJm7uB81cgMfRp1ZF9kmGZhLDwsSJucXE1mIx0qdD9hyto3D6rrY3CHqqinZOOOsqXSqayPWiu646CuzrW+XS13XJSrITE4JUj6Nkc3LaRYey/4dj/CYAtoQ+xPK1KoPl4rdYkwEBbRrhgRziXvl0Brb+Kvv1Z3Bm50nbDmeQF78JuaRit/Y+FK9ph8ajFXWIDLdDp7uM46tkbfrd1Cl8sFhPW/Ygai0yRkMG/aQ76ZZKapdoLLsloRJ4H9NkMNm/m/hEAMvs4v374=
+  file: embroidermodder2.app
+  on:
+    repo: itsbalamurali/Embroidermodder
